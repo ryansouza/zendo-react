@@ -18,7 +18,7 @@ module.exports = {
 
   debug: false,
   devtool: false,
-  entry: './src/components/ReactZendoApp.js',
+  entry: './src/index.js',
 
   stats: {
     colors: true,
