@@ -6,15 +6,18 @@ import DotGrid from './DotGrid';
 import Koan from './Koan';
 
 var KoanToolbox = React.createClass({
+  getInitialState: function() {
+    return { rotation: 0, color: 'red' }
+  },
   render: function() {
     const { width, height, cols, rows, grabPiece } = this.props;
-    const x = 5;
+    const { rotation, color } = this.state;
 
-    var pieces = [
-      { x, y: 3, piece: {length: 3, width: 2.4, rotation: 0, color: 'red' }},
-      { x, y: 7, piece: {length: 5, width: 4, rotation: 90, color: 'red' }},
-      { x, y: 13, piece: {length: 7, width: 5.6, rotation: 45, color: 'red' }}
-    ];
+    const small = { length: 3, width: 2, rotation, color };
+    const medium = { length: 5, width: 3.5, rotation, color };
+    const large = { length: 7, width: 5, rotation, color };
+
+    const x = 5;
 
     return (
       <svg
@@ -25,7 +28,9 @@ var KoanToolbox = React.createClass({
         xmlns="http://www.w3.org/2000/svg"
       >
         <DotGrid/>
-        { pieces.map( p => (<Koan {...p} {...p.piece} onClick={ function() { grabPiece(p.piece) } } />)) }
+        <Koan x={x} y={3} {... small} onClick={ function() { grabPiece(small) } } />
+        <Koan x={x} y={8} {... medium} onClick={ function() { grabPiece(medium) } } />
+        <Koan x={x} y={15} {... large} onClick={ function() { grabPiece(large) } } />
     </svg>
     )
   }
