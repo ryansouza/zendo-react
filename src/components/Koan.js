@@ -20,6 +20,7 @@ var Koan = React.createClass({
     }
   },
   render: function() {
+    const { color } = this.props;
     const { tip, left, right, base } = this.points();
     const polygonPoints = `${tip.x},${tip.y} ${left.x},${left.y} ${right.x},${right.y}`;
 
@@ -30,8 +31,8 @@ var Koan = React.createClass({
           y1={tip.y}
           x2={left.x}
           y2={left.y}
-          stroke="red"
-          strokeWidth=".5"
+          stroke={color}
+          strokeWidth="1"
           strokeLinecap="round"
         />
         <line
@@ -39,20 +40,18 @@ var Koan = React.createClass({
           y1={tip.y}
           x2={right.x}
           y2={right.y}
-          stroke="blue"
-          strokeWidth=".5"
+          stroke={color}
+          strokeWidth="1"
           strokeLinecap="round"
         />
-        <line
-          x1={tip.x}
-          y1={tip.y}
-          x2={base.x}
-          y2={base.y}
+        <polygon
+          points={polygonPoints}
+          onClick={this.props.onClick}
           stroke="black"
           strokeWidth=".5"
           strokeLinecap="round"
+          opacity="0"
         />
-        <polygon points={polygonPoints} onClick={this.props.onClick} opacity="0"/>
       </g>
     )
   }
