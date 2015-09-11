@@ -6,6 +6,13 @@ import DotGrid from './DotGrid';
 import Koan from './Koan';
 
 var KoanToolbox = React.createClass({
+  _changeRotation: function(by) {
+    return () => { this.setState({rotation: this.state.rotation + by}) }
+  },
+  _changeColor: function(color) {
+    return () => { this.setState({color: color}) }
+  },
+
   getInitialState: function() {
     return { rotation: 0, color: 'red' }
   },
@@ -31,6 +38,13 @@ var KoanToolbox = React.createClass({
         <Koan x={x} y={3} {... small} onClick={ function() { grabPiece(small) } } />
         <Koan x={x} y={8} {... medium} onClick={ function() { grabPiece(medium) } } />
         <Koan x={x} y={15} {... large} onClick={ function() { grabPiece(large) } } />
+
+        <rect x="2" y="20" width="2" height="2" onClick={this._changeRotation(10)} />
+        <rect x="6" y="20" width="2" height="2" onClick={this._changeRotation(-10)} />
+
+        <rect x="1" y="23" width="2" height="2" fill="red" onClick={this._changeColor("red")} />
+        <rect x="4" y="23" width="2" height="2" fill="green" onClick={this._changeColor("green")} />
+        <rect x="7" y="23" width="2" height="2" fill="blue" onClick={this._changeColor("blue")} />
     </svg>
     )
   }
