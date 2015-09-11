@@ -23,6 +23,7 @@ var Koan = React.createClass({
     const { color } = this.props;
     const { tip, left, right, base } = this.points();
     const polygonPoints = `${tip.x},${tip.y} ${left.x},${left.y} ${right.x},${right.y}`;
+    const pathPoints = `M ${left.x} ${left.y} L ${tip.x} ${tip.y} L ${right.x} ${right.y}`;
 
     return (
       <g>
@@ -52,6 +53,24 @@ var Koan = React.createClass({
           strokeLinecap="round"
           opacity="0"
         />
+        {/*
+        <line
+          x1={tip.x}
+          y1={tip.y}
+          x2={base.x}
+          y2={base.y}
+          stroke="black"
+          strokeWidth=".5"
+          strokeLinecap="round"
+        />
+        <path
+          d={pathPoints}
+          stroke={color}
+          strokeWidth=".5"
+          strokeLinecap="round"
+          fillOpacity="0"
+        />
+        */}
       </g>
     )
   }
